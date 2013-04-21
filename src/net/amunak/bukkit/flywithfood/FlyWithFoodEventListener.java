@@ -127,6 +127,7 @@ class FlyWithFoodEventListener implements Listener {
             }
         }
         log.fine("itemConsume ended for " + p.getName() + " with cancelled: " + e.isCancelled());
+        this.plugin.fixDataInconsistency(p);
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

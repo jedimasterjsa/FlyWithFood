@@ -186,6 +186,10 @@ public class FlyWithFood extends JavaPlugin {
         }
     }
 
+    void fixDataInconsistency(Player p) {
+        this.getServer().getScheduler().runTaskLater(this, new FixDataInconsistency(p), 1L);
+    }
+
     private static class OnRemoveHunger implements Runnable {
 
         protected FlyWithFood plugin;
@@ -233,6 +237,21 @@ public class FlyWithFood extends JavaPlugin {
             if (p != null) {
                 p.playSound(p.getLocation(), Sound.ORB_PICKUP, 2F, 2F - (this.soundNr / 10F));
             }
+        }
+    }
+
+    private static class FixDataInconsistency implements Runnable {
+
+        private final Player p;
+
+        public FixDataInconsistency(Player p) {
+            this.p = p;
+        }
+
+        @Override
+        public void run() {
+            p.updateInventory();
+            p.setFoodLevel(p.getFoodLevel());
         }
     }
 }
