@@ -3,6 +3,7 @@ description: This plugin allows highly configurable, creative-like flying in sur
 main: net.amunak.bukkit.flywithfood.FlyWithFood
 version: 2.0.0
 author: Amunak
+website: http://dev.bukkit.org/server-mods/fly-with-food/
 load: POSTWORLD
 commands:
   fly:
