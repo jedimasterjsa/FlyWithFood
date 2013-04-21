@@ -1,0 +1,77 @@
+options:
+  general:
+    #check for updates automatically
+    checkVersion: true
+    #verbose logging to console
+    verboseLogging: false
+  drainHunger:
+    # Turn on/off the hunger drain when flying
+    # You can bypass this for individual players by using fly.nohunger
+    enable: true
+
+    # Amount of hunger taken each interval
+    # 1 = half a "hunger"
+    # 2 = one "hunger"
+    # 20 = take all
+    rate: 1
+
+    # Interval in ticks to drain the food from flying players
+    # 20 = 1 second
+    interval: 100
+
+    # When hunger drops under this amount, player stops flying 
+    # 20 = full hunger bar required
+    # 0 = no limit
+    min: 5
+    
+    # Set up warning for players
+    warning:
+      # Enable textual warning
+      enableText: true
+      # Enable warning by sound
+      enableSound: true
+      # When hunger drops under this amount, the warning will apply
+      # Please note that the warning will be applied EVERY time player's hunger
+      #   level changes at or below this minimum.
+      # Set it at drainHunger.min or above (depending on your drainguhnger.rate
+      #   and drainhunger.interval the ideal value for this will vary).
+      min: 6
+
+  limitFoodConsumption:
+    # Limit the number of items player can eat
+    enable: true
+
+    # Maximum amount of eaten items
+    # -1 = no limit (use this if you want to just disallow some food)
+    # 0 = player can eat no food while flying
+    max: 5
+
+    # List of items that the player is not allowed to eat while flying
+    # You can choose anything from the listOfFood (see below)
+    listOfDisallowedFood:
+
+# This is a list of all items that restore food level to date (20. April 2013; Bukkit 1.5.1-R0.2)
+# List of all materials: http://jd.bukkit.org/rb/apidocs/org/bukkit/Material.html
+listOfFood:
+  - APPLE
+  - BAKED_POTATO
+  - BREAD
+  - CAKE
+  - CARROT_ITEM
+  - COOKED_BEEF
+  - COOKED_CHICKEN
+  - COOKED_FISH
+  - COOKIE
+  - GOLDEN_APPLE
+  - GOLDEN_CARROT
+  - MELON
+  - MUSHROOM_SOUP
+  - POISONOUS_POTATO
+  - PORK
+  - POTATO_ITEM
+  - PUMPKIN_PIE
+  - RAW_BEEF
+  - RAW_CHICKEN
+  - RAW_FISH
+  - ROTTEN_FLESH
+  - SPIDER_EYE

@@ -1,0 +1,38 @@
+name: FlyWithFood
+description: This plugin allows highly configurable, creative-like flying in survival, that can optionally drain players' hunger.
+main: net.amunak.bukkit.flywithfood.FlyWithFood
+version: 2.0.0
+author: Amunak
+load: POSTWORLD
+commands:
+  fly:
+    description: Plugin's main command, displays help.
+    aliases: [fwf, flywithfood]
+permissions:
+  fly.*:
+    description: gives 
+    children:
+      fly.fly: true
+      fly.other: true
+      fly.nohunger: true
+      fly.configure: true
+  fly.fly:
+    description: Allows the use of /fly toggle|on|off
+    default: op
+  fly.other:
+    description: Allows the use of /fly on|off nick - force others to fly (they don't need fly.fly); implies fly.fly
+    default: op
+    children:
+      fly.fly: true
+  fly.nohunger:
+    description: Bypasses hunger drain and limits
+    default: op
+  fly.eatanything:
+    description: Bypasses eating limits when flying
+    default: op
+  fly.force:
+    description: Allows fly regardless of other settings (hunger limits still apply)
+    default: false
+  fly.configure:
+    description: Allows the use of /fly config
+    default: op
