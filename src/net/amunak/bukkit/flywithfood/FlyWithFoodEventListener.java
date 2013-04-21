@@ -119,7 +119,7 @@ class FlyWithFoodEventListener implements Listener {
                     } else {
                         p.sendMessage(ChatColor.BLUE + "You have already consumed "
                                 + ChatColor.DARK_PURPLE + this.plugin.maxFoodEaten
-                                + ChatColor.BLUE + "piece" + (this.plugin.maxFoodEaten > 1 ? "s" : "")
+                                + ChatColor.BLUE + " piece" + (this.plugin.maxFoodEaten > 1 ? "s" : "")
                                 + " of food during this flight. You can eat no more.");
                         e.setCancelled(true);
                     }
