@@ -16,6 +16,7 @@ permissions:
       fly.fly: true
       fly.other: true
       fly.nohunger: true
+      fly.eatanything: true
       fly.configure: true
   fly.fly:
     description: Allows the use of /fly toggle|on|off
@@ -32,7 +33,7 @@ permissions:
     description: Bypasses eating limits when flying
     default: op
   fly.force:
-    description: Allows fly regardless of other settings (hunger limits still apply)
+    description: Allows fly regardless of other permissions and commands (hunger limits still apply)
     default: false
   fly.configure:
     description: Allows the use of /fly config
