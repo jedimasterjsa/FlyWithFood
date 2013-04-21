@@ -175,7 +175,7 @@ public class FlyWithFood extends JavaPlugin {
             } else if (foodLevel <= this.hungerWarning) {
                 if (this.config.getBoolean("options.drainHunger.warning.enableSound")) {
                     final String pName = p.getName();
-                    for (int i = 0; i < 6; i++) {
+                    for (int i = 0; i < 4; i++) {
                         this.getServer().getScheduler().runTaskLater(this, new FlyWithFood.ScheduleWarningsound(pName, i), (long) (i * 4));
                     }
                 }
@@ -231,7 +231,7 @@ public class FlyWithFood extends JavaPlugin {
             Player p = getServer().getPlayer(this.pName);
             log.fine("running sound for player " + pName);
             if (p != null) {
-                p.playSound(p.getLocation(), Sound.NOTE_BASS_GUITAR, 3.0F, 3F - (this.soundNr / 8F));
+                p.playSound(p.getLocation(), Sound.ORB_PICKUP, 2F, 2F - (this.soundNr / 10F));
             }
         }
     }
