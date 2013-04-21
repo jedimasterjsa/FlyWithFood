@@ -119,7 +119,7 @@ public class FlyWithFood extends JavaPlugin {
         this.listOfForbiddenFood = config.getStringList("options.limitFoodConsumption.listOfDisallowedFood");
         Common.fixEnumLists(this.listOfForbiddenFood);
 
-        log.info("reloaded config");
+        log.fine("reloaded config");
     }
 
     public void setFlightPreference(Player p) {
