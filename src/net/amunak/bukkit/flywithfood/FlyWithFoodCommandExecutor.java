@@ -98,7 +98,31 @@ public final class FlyWithFoodCommandExecutor implements CommandExecutor {
 
         //Display help
         if ((args.length == 0) || (args.length == 1 && args[0].equalsIgnoreCase("help"))) {
-            sender.sendMessage("Use " + ChatColor.GOLD + "/help " + plugin.pdfFile.getName());
+            ChatColor m = ChatColor.YELLOW;
+            ChatColor c = ChatColor.GREEN;
+            ChatColor p = ChatColor.AQUA;
+            String s = "  ";
+            sender.sendMessage(ChatColor.GOLD + this.plugin.pdfFile.getFullName());
+            sender.sendMessage(s + m + "You can use " + c + "/fly" + m + ", " + c + "/fwf" + m + " or " + c + "/FlyWithFood" + m + " as base command");
+            sender.sendMessage(s + "Available commands:");
+            if (sender.hasPermission("fly.fly")) {
+                sender.sendMessage(s + s + c + "/fly " + p + "<on|off|toggle>" + m + " - turn fly on, off or toggle it for yourself");
+            }
+            if (sender.hasPermission("fly.other")) {
+                sender.sendMessage(s + s + c + "/fly " + p + "<on|off> (PLAYER)" + m + " - turn fly on or off for " + p + "player");
+            }
+            if (sender.hasPermission("fly.config")) {
+                sender.sendMessage(s + s + c + "/fly config reload - reload plugin's configuration");
+                sender.sendMessage(s + "Permission nodes:");
+                sender.sendMessage(s + s + c + "fly.*" + m + " all permissions except " + c + "fly.force");
+                sender.sendMessage(s + s + c + "fly.fly" + m + " allows " + c + "/fly " + p + "<on|off|toggle>");
+                sender.sendMessage(s + s + c + "fly.other" + m + " allows " + c + "/fly " + p + "<on|off|toggle>" + m + " and " + c + "/fly " + p + "<on|off> (PLAYER)");
+                sender.sendMessage(s + s + c + "fly.nohunger" + m + " player bypasses hunger drain and checks");
+                sender.sendMessage(s + s + c + "fly.eatanything" + m + " player bypasses eating limit and checks");
+                sender.sendMessage(s + s + c + "fly.force" + m + " forces player the ability to fly (bypasses the need of fly.fly but other checks apply)");
+                sender.sendMessage(s + s + c + "fly.configure" + m + " allows " + c + "/fly config");
+            }
+
             return true;
         }
 
