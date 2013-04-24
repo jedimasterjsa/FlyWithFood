@@ -22,7 +22,7 @@ options:
     # When player has less food than this amount, he cannot lift off, 
     #   but he can still continue flying
     # 20 = can lift off with full food level only
-    # 0  = can lift off independantly on food level
+    # 0  = can lift off independently on food level
     liftOffMin: 10
 
     # When hunger drops under this amount, player stops flying 
