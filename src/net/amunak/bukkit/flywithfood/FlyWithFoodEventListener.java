@@ -76,9 +76,9 @@ class FlyWithFoodEventListener implements Listener {
         if (e.isFlying() && e.getPlayer().getGameMode().equals(GameMode.SURVIVAL)) {
             if (this.plugin.config.getBoolean("options.drainHunger.enable")
                     && !e.getPlayer().hasPermission("fly.nohunger")
-                    && e.getPlayer().getFoodLevel() < this.plugin.hungerMin) {
+                    && e.getPlayer().getFoodLevel() < this.plugin.hungerLiftoffMin) {
                 e.setCancelled(true);
-                e.getPlayer().sendMessage(ChatColor.BLUE + "Your food level is under " + ChatColor.DARK_PURPLE + ((double) this.plugin.hungerMin / 2) + ChatColor.BLUE + ". You are too weak to fly.");
+                e.getPlayer().sendMessage(ChatColor.BLUE + "Your food level is under " + ChatColor.DARK_PURPLE + ((double) this.plugin.hungerLiftoffMin / 2) + ChatColor.BLUE + ". You are too weak to lift off.");
             }
             if (!e.getPlayer().getAllowFlight()) {
                 e.setCancelled(true);

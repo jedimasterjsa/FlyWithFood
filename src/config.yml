@@ -19,7 +19,14 @@ options:
     # 20 = 1 second
     interval: 100
 
+    # When player has less food than this amount, he cannot lift off, 
+    #   but he can still continue flying
+    # 20 = can lift off with full food level only
+    # 0  = can lift off independantly on food level
+    liftOffMin: 10
+
     # When hunger drops under this amount, player stops flying 
+    # There is no point in setting this higher than liftOffMin
     # 20 = full hunger bar required
     # 0 = no limit
     min: 5

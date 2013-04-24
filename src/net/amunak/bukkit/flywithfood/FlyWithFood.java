@@ -38,6 +38,7 @@ public class FlyWithFood extends JavaPlugin {
     public List<String> listOfForbiddenFood;
     private long hungerDrainInterval;
     public int hungerMin;
+    public int hungerLiftoffMin;
     public int hungerWarning;
     private int hungerTaskId = -1;
     public int maxFoodEaten;
@@ -85,11 +86,23 @@ public class FlyWithFood extends JavaPlugin {
             }
             this.restartHungerRemoveScheduler();
 
+            if (this.config.getInt("options.drainHunger.liftOffMin") < 0 || this.config.getInt("options.drainHunger.liftOffMin") > 20) {
+                log.warning("Configuration error: minial food level for lift off invalid, using default (10)");
+                this.hungerLiftoffMin = 10;
+            } else {
+                this.hungerLiftoffMin = this.config.getInt("options.drainHunger.liftOffMin");
+            }
+
             if (this.config.getInt("options.drainHunger.min") < 0 || this.config.getInt("options.drainHunger.min") > 20) {
                 log.warning("Configuration error: minial food level for flying invalid, using default (5)");
                 this.hungerMin = 5;
             } else {
                 this.hungerMin = this.config.getInt("options.drainHunger.min");
+            }
+
+            if (hungerLiftoffMin < hungerMin) {
+                hungerLiftoffMin = hungerMin;
+                log.warning("Configuration error: minimal lift off food level is smaller than minimal food level for flying, setting lift off minimum to " + hungerLiftoffMin);
             }
 
             if (this.config.getBoolean("options.drainHunger.warning.enableText") || this.config.getBoolean("options.drainHunger.warning.enableSound")) {

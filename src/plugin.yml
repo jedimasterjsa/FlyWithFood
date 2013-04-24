@@ -1,7 +1,7 @@
 name: FlyWithFood
 description: This plugin allows highly configurable, creative-like flying in survival, that can optionally drain players' hunger.
 main: net.amunak.bukkit.flywithfood.FlyWithFood
-version: 2.0.0
+version: 2.0.1
 author: Amunak
 website: http://dev.bukkit.org/server-mods/fly-with-food/
 load: POSTWORLD
