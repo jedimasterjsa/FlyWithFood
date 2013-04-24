@@ -16,7 +16,6 @@ package net.amunak.bukkit.flywithfood;
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -44,7 +43,7 @@ public final class CheckVersion {
         InputStream is;
         String s;
         Integer version;
-        
+
         log = new Log(plugin);
         version = (int) (Integer.parseInt(plugin.getDescription().getVersion().replace(".", "")));
 

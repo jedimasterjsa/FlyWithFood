@@ -17,6 +17,7 @@ package net.amunak.bukkit.flywithfood;
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 public class FlyablePlayerRecord {
+
     public boolean hasEnabledFlying = false;
     public int foodEaten = 0;
 }
