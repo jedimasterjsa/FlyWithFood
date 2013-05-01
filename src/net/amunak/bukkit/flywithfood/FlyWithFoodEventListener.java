@@ -31,6 +31,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.player.PlayerToggleFlightEvent;
+import org.bukkit.util.Vector;
 
 class FlyWithFoodEventListener implements Listener {
 
@@ -78,6 +79,13 @@ class FlyWithFoodEventListener implements Listener {
                     && e.getPlayer().getFoodLevel() < this.plugin.hungerLiftoffMin) {
                 e.setCancelled(true);
                 e.getPlayer().sendMessage(ChatColor.BLUE + "Your food level is under " + ChatColor.DARK_PURPLE + ((double) this.plugin.hungerLiftoffMin / 2) + ChatColor.BLUE + ". You are too weak to lift off.");
+                if (this.plugin.config.getBoolean("options.drainHunger.punishCheatyFlyAttempts")) {
+                    Vector velocity = e.getPlayer().getVelocity();
+                    velocity.setY(-10);
+                    velocity.setX(velocity.getX() / -2);
+                    velocity.setZ(velocity.getZ() / -2);
+                    e.getPlayer().setVelocity(velocity);
+                }
             }
             if (!e.getPlayer().getAllowFlight()) {
                 e.setCancelled(true);

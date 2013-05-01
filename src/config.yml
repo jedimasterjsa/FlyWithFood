@@ -31,6 +31,13 @@ options:
     # 0 = no limit
     min: 5
     
+    # It is possible to stay in air longer than usual
+    #   even over the fly limit with continuous spacebar mashing
+    # Set this to true to "punish" this by forcing players to go down
+    # This also prevents players from jumping 2 blocks without food
+    #   (they can still jump 1.5 blocks high though)
+    punishCheatyFlyAttempts: true
+    
     # Set up warning for players
     warning:
       # Enable textual warning
