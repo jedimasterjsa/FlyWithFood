@@ -61,7 +61,7 @@ class FlyWithFoodEventListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onPlayerGameModeChange(PlayerGameModeChangeEvent e) {
-        this.plugin.checkFlyingCapability(e.getPlayer());
+        this.plugin.checkFlyingCapability(e.getPlayer(), true);
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

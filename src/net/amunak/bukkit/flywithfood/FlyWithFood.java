@@ -55,7 +55,7 @@ public class FlyWithFood extends JavaPlugin {
 
         for (Player p : this.getServer().getOnlinePlayers()) {
             this.flyablePlayers.put(p, new FlyablePlayerRecord());
-            this.checkFlyingCapability(p);
+            this.checkFlyingCapability(p, true);
         }
 
         this.saveDefaultConfig();
@@ -165,6 +165,14 @@ public class FlyWithFood extends JavaPlugin {
         }
     }
 
+    public void checkFlyingCapability(Player player, Boolean delayed) {
+        if (delayed) {
+            this.getServer().getScheduler().scheduleSyncDelayedTask(this, new FlyWithFood.DelayedFlyingCapabilityCheck(player.getName(), this), 4);
+        } else {
+            this.checkFlyingCapability(player);
+        }
+    }
+
     private void restartHungerRemoveScheduler() {
         if (this.hungerTaskId != -1) {
             this.getServer().getScheduler().cancelTask(this.hungerTaskId);
@@ -229,6 +237,26 @@ public class FlyWithFood extends JavaPlugin {
                     log.fine(player.getName() + " now has foodLevel of " + newFoodLevel);
                     this.plugin.foodLevelCheck(player, newFoodLevel);
                 }
+            }
+        }
+    }
+
+    private class DelayedFlyingCapabilityCheck implements Runnable {
+
+        private final String pName;
+        protected FlyWithFood plugin;
+
+        public DelayedFlyingCapabilityCheck(String pName, FlyWithFood plugin) {
+            this.pName = pName;
+            this.plugin = plugin;
+        }
+
+        @Override
+        public void run() {
+            Player p = getServer().getPlayer(this.pName);
+            log.fine("running delayed check on " + pName);
+            if (p != null) {
+                this.plugin.checkFlyingCapability(p);
             }
         }
     }
