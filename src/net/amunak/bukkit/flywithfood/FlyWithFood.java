@@ -32,6 +32,8 @@ public class FlyWithFood extends JavaPlugin {
     protected static Log log;
     public PluginDescriptionFile pdfFile;
     public FileConfiguration config;
+    private ConfigAccessor languageAccessor;
+    public FileConfiguration languageFile;
     public HashMap<Player, FlyablePlayerRecord> flyablePlayers = new HashMap<>();
     public List<String> flyControlCommands = new ArrayList<>();
     public List<String> listOfFood;
@@ -62,6 +64,12 @@ public class FlyWithFood extends JavaPlugin {
         this.getConfig().options().copyDefaults(true);
         this.reloadConfig();
 
+        //load language configuration
+        this.languageAccessor = new ConfigAccessor(this, "localization.yml");
+        this.languageAccessor.reloadConfig();
+        this.languageAccessor.saveDefaultConfig();
+        this.languageFile = this.languageAccessor.getConfig();
+
         if (this.config.getBoolean("options.general.checkVersion")) {
             CheckVersion.check(this);
         }
@@ -75,6 +83,9 @@ public class FlyWithFood extends JavaPlugin {
 
     @Override
     public void reloadConfig() {
+        //reload language configuration first
+        this.languageFile = this.languageAccessor.getConfig();
+
         super.reloadConfig();
         this.config = this.getConfig();
         if (this.config.getBoolean("options.drainHunger.enable")) {
