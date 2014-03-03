@@ -233,19 +233,33 @@ public class FlyWithFood extends JavaPlugin {
         @Override
         public void run() {
             for (Player player : this.plugin.getServer().getOnlinePlayers()) {
-                //Remove hunger if player is in survival, flying and has no bypass
+                //Remove hunger/saturation if player is in survival, flying and has no bypass
                 if (player.getGameMode().equals(GameMode.SURVIVAL)
                         && player.isFlying()
                         && !player.hasPermission("fly.nohunger")) {
-                    int newFoodLevel = player.getFoodLevel() - this.plugin.config.getInt("options.drainHunger.rate");
-                    if (newFoodLevel < 0) {
-                        newFoodLevel = 0;
+                    //remoce from saturation first if we can, then do food level
+                    if (player.getSaturation() > 0) {
+												int newSaturationLevel = player.getSaturation() - this.plugin.config.getInt("options.drainHunger.rate");
+												if (newSaturationLevel < 0) {
+														newSaturationLevel = 0;
+												}
+												if (newSaturationLevel > 20) {
+														newSaturationLevel = 20;
+												}
+												player.setSaturation(newSaturationLevel);
+                    		log.fine(player.getName() + " now has saturation of " + newSaturationLevel);
                     }
-                    if (newFoodLevel > 20) {
-                        newFoodLevel = 20;
+                    else {
+												int newFoodLevel = player.getFoodLevel() - this.plugin.config.getInt("options.drainHunger.rate");
+												if (newFoodLevel < 0) {
+														newFoodLevel = 0;
+												}
+												if (newFoodLevel > 20) {
+														newFoodLevel = 20;
+												}
+                    		player.setFoodLevel(newFoodLevel);
+                    		log.fine(player.getName() + " now has foodLevel of " + newFoodLevel);
                     }
-                    player.setFoodLevel(newFoodLevel);
-                    log.fine(player.getName() + " now has foodLevel of " + newFoodLevel);
                     this.plugin.foodLevelCheck(player, newFoodLevel);
                 }
             }
