@@ -237,9 +237,10 @@ public class FlyWithFood extends JavaPlugin {
                 if (player.getGameMode().equals(GameMode.SURVIVAL)
                         && player.isFlying()
                         && !player.hasPermission("fly.nohunger")) {
-                    //remoce from saturation first if we can, then do food level
+                    int newFoodLevel = player.getFoodLevel();
+                    //remove from saturation first if we can, then do food level
                     if (player.getSaturation() > 0) {
-                        int newSaturationLevel = player.getSaturation() - this.plugin.config.getInt("options.drainHunger.rate");
+                        float newSaturationLevel = player.getSaturation() - this.plugin.config.getInt("options.drainHunger.rate");
                         if (newSaturationLevel < 0) {
                             newSaturationLevel = 0;
                         }
@@ -250,7 +251,7 @@ public class FlyWithFood extends JavaPlugin {
                         log.fine(player.getName() + " now has saturation of " + newSaturationLevel);
                     }
                     else {
-                        int newFoodLevel = player.getFoodLevel() - this.plugin.config.getInt("options.drainHunger.rate");
+                        newFoodLevel = player.getFoodLevel() - this.plugin.config.getInt("options.drainHunger.rate");
                         if (newFoodLevel < 0) {
                             newFoodLevel = 0;
                         }
